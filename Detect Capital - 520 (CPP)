@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+
+        int n = word.size();
+        bool is_end_capital = false ;
+        if( word[n-1]>='A' && word[n-1]<='Z') is_end_capital = true ;
+        bool is_start_capital = false ; 
+        if( word[0]>='A' && word[0]<='Z') is_start_capital = true ;
+        // if end is capital & start is capital we look if all inside are capital too or not
+        //otherwise we will se if end is lowercase than all inside should also be in lowercase
+        if(is_end_capital && !is_start_capital) return false ;
+        if(is_end_capital && is_start_capital){
+            for(int i = 1 ; i<n ; i++){
+                if(word[i]>='a' && word[i]<='z') return false ;
+            }
+            return true ;
+        }
+        for(int i =1 ; i< n ; i++){
+           if(word[i]>='A' && word[i]<='Z') return false ; //means inside are some upper case letter 
+        }
+        return true ;
+    }
+};
+
+//faster than 100%
