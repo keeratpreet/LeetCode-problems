@@ -1,0 +1,24 @@
+class Solution {
+public:
+    // iteratively we can do it using queues 
+    // here we will do it using recursion 
+    // just be  aware of the level where you are traversing , rest is simple traversal 
+
+    void solve(vector<int>&ans , TreeNode* root , int level){
+        if(!root) return  ;
+
+        if(level == ans.size()) ans.push_back(root->val);
+        else{
+            ans[level] = max(ans[level] , root->val);
+        }
+
+        solve(ans , root->left , level+1);
+        solve(ans , root->right , level+1);
+    }
+
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> ans ;
+        solve(ans,root,0);
+        return ans ;
+    }
+};
