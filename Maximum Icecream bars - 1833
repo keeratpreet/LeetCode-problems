@@ -1,0 +1,23 @@
+class Solution {
+public:
+
+     long long mod = 10000000000007 ;
+    int maxIceCream(vector<int>& costs, int coins) {
+        sort(costs.begin(),costs.end());
+        int n = costs.size();
+        long long sum = 0 ;
+
+        for(int i=0 ; i<n ; i++){
+            sum= (sum+costs[i])%mod;
+        }
+        if(sum <= coins) return costs.size();
+        int remove = 0 ;
+        int i = 0 ;
+        while(sum>coins){
+            sum -= costs[n-i-1];
+            i++;
+            remove++ ;
+        }
+        return n-remove ;
+    }
+}; 
